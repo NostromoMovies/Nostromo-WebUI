@@ -27,6 +27,7 @@
 
 
 <script>
+import apiService from '@/apiService.js';
 export default {
   props: {
     show: Boolean,
@@ -43,6 +44,9 @@ export default {
   methods: {
     close() {
       this.$emit('update:show', false);
+    },
+    sendInformation(){
+       
     },
   },
 };

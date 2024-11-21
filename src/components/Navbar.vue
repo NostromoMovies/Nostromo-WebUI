@@ -20,6 +20,7 @@
   
   <script>
   import SignupPop from './SignupPop.vue';
+  import FileCreation from './FileCreation.vue';
   
   export default {
     components: {

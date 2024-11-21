@@ -4,10 +4,15 @@
   </header>
   
   <Navbar />
+  <Dashboard/>
+  
+  
 </template>
 
 <script setup>
-import SignupForm from './components/SignupForm.vue'
+import FileCreation from './components/FileCreation.vue';
+import Dashboard from './components/Dashboard.vue';
+
 import Navbar from './components/Navbar.vue' 
 import { ref } from 'vue'
 
