@@ -10,12 +10,18 @@
 </template>
 
 <script setup>
+
 import FileCreation from './components/FileCreation.vue';
 import Dashboard from './components/Dashboard.vue';
 
 import Navbar from './components/Navbar.vue' 
 import { ref } from 'vue'
+components: {
+  Dashboard
+  Navbar
+  FileCreation
 
+}
 const title = ref('My First Vue App :)')
 </script>
 

@@ -13,18 +13,18 @@
       </ul>
       <div class="nav-item">
         <button class="login-button" @click="toggleLogin">Login</button>
-        <SignupPop v-model:show="isLoginVisible"></SignupPop>
+        <SigninPop v-model:show="isLoginVisible"></SigninPop>
       </div>
     </div>
   </template>
   
   <script>
-  import SignupPop from './SignupPop.vue';
+  import SigninPop from './SigninPop.vue';
   import FileCreation from './FileCreation.vue';
   
   export default {
     components: {
-      SignupPop
+      SigninPop
     },
     data() {
       return {
