@@ -4,7 +4,7 @@
         	<button class="close-button" @click="close">x</button>
 
         	<form @submit.prevent="handleSignUp">
-            	<p class="brand-name">Nostromos</p>
+            	<p class="brand-name">Nostromo</p>
 
             	<label>First Name:</label>
             	<input type="text" required v-model="firstname" placeholder="Enter your first name">

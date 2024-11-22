@@ -4,7 +4,9 @@
   </header>
   
   <Navbar />
-  <Dashboard/>
+  <BoxSection/>
+  <FileCreation/>
+
   
   
 </template>
@@ -12,16 +14,11 @@
 <script setup>
 
 import FileCreation from './components/FileCreation.vue';
-import Dashboard from './components/Dashboard.vue';
 
-import Navbar from './components/Navbar.vue' 
-import { ref } from 'vue'
-components: {
-  Dashboard
-  Navbar
-  FileCreation
+import Navbar from './components/Navbar.vue';
+import { ref } from 'vue';
+import BoxSection from './components/BoxSection.vue';
 
-}
 const title = ref('My First Vue App :)')
 </script>
 
