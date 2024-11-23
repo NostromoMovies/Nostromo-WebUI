@@ -5,9 +5,9 @@
       <form>
         <p class="brand-name">Nostromo</p>
         <label>Email:</label>
-        <input type="email" required v-model="email" />
+        <!----<input type="email" required v-model="email" />-->
         <label>Password:</label>
-        <input type="password" required v-model="password" />
+        <!----<input type="password" required v-model="password" />-->
         <button class="submit-button">Log In</button>
         <p class="reset-password">Forgot your password?</p>
 
@@ -20,27 +20,32 @@
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    show: Boolean, // Accepts 'show' prop to control visibility
-  },
-  data() {
-    return {
-      email: '',
-      password: '',
-    };
-  },
-  methods: {
-    close() {
-      this.$emit('update:show', false); // Close the login popup
-    },
-    handleSignUpClick() {
-      console.log('Sign-Up button clicked');
-      this.$emit('open-signup'); // Emit the event to open the signup popup
-    },
-  },
-};
+<script setup lang="ts">
+import { ref } from 'vue'
+import type { LoginForm } from '@/types'
+
+const props = defineProps<{
+  show: boolean
+}>()
+
+const emit = defineEmits<{
+  'update:show': [value: boolean]
+  'open-signup': []
+}>()
+
+const formData = ref<LoginForm>({
+  email: '',
+  password: ''
+})
+
+const close = () => {
+  emit('update:show', false)
+}
+
+const handleSignUpClick = () => {
+  console.log('Sign-Up button clicked')
+  emit('open-signup')
+}
 </script>
 
 

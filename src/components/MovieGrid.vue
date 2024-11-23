@@ -25,52 +25,36 @@
   </div>
 </template>
 
-<script>
-import { inject, ref, computed } from 'vue';
+<script setup lang="ts">
+import { inject, ref, computed } from 'vue'
+import type { Movie, MovieStore } from '@/types'
 
-export default {
-  name: 'MovieGrid',
-  setup() {
-    const movieStore = inject('movieStore');
-    const loading = ref(true);
-    const error = ref(null);
+const movieStore = inject('movieStore') as MovieStore
+const loading = ref(true)
+const error = ref<string | null>(null)
 
-    const movies = computed(() => movieStore.movies.value);
-    const lastFetched = computed(() => movieStore.lastFetched.value);
+const movies = computed(() => movieStore.movies.value)
+const lastFetched = computed(() => movieStore.lastFetched.value)
 
-    const loadMovies = async () => {
-      try {
-        loading.value = true;
-        await movieStore.fetchMovies();
-      } catch (e) {
-        error.value = `Failed to load movies: ${e.message}`;
-        console.error('Error fetching movies:', e);
-      } finally {
-        loading.value = false;
-      }
-    };
-
-    const formatLastUpdated = (timestamp) => {
-      return new Date(timestamp).toLocaleTimeString();
-    };
-
-    // Load movies when component is mounted
-    loadMovies();
-
-    return {
-      movies,
-      loading,
-      error,
-      lastFetched,
-      formatLastUpdated,
-    };
-  },
-  methods: {
-    handleImageError(e) {
-      e.target.src = 'https://placehold.co/300x450?text=No+Poster';
-    }
+const loadMovies = async () => {
+  try {
+    loading.value = true
+    await movieStore.fetchMovies()
+  } catch (e) {
+    error.value = `Failed to load movies: ${(e as Error).message}`
+    console.error('Error fetching movies:', e)
+  } finally {
+    loading.value = false
   }
 }
+
+const handleImageError = (e: Event) => {
+  const target = e.target as HTMLImageElement
+  target.src = 'https://placehold.co/300x450?text=No+Poster'
+}
+
+// Load movies when component is mounted
+loadMovies()
 </script>
 
 <style scoped>
