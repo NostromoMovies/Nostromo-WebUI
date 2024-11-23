@@ -1,47 +1,41 @@
+<!-- Navbar.vue -->
 <template>
   <div class="navbar">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="#">Home</a>
+        <router-link class="nav-link" :class="{ active: $route.path === '/' }" to="/">Home</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Dashboard</a>
+        <router-link class="nav-link" :class="{ active: $route.path === '/dashboard' }" to="/dashboard">Dashboard</router-link>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/collection">Collection</a>
+        <router-link class="nav-link" :class="{ active: $route.path === '/collection' }" to="/collection">Collection</router-link>
       </li>
     </ul>
 
-    <!-- Login button that triggers login popup -->
     <div class="login-button">
-      <PopupManager  v-model:show="isLoginVisible" />
+      <PopupManager v-model:show="isLoginVisible" />
     </div>
-
-
-
   </div>
 </template>
 
 <script>
-import PopupManager from './PopupManager.vue'; // Import PopupManager for login/signup
+import PopupManager from './PopupManager.vue';
 
 export default {
   components: {
-    PopupManager,        // Add PopupManager for login/signup
-    
+    PopupManager,
   },
   data() {
     return {
-      isLoginVisible: false,         // Track visibility of login popup
-      isProgramManagerVisible: false, // Track visibility of Program Manager popup
+      isLoginVisible: false,
+      isProgramManagerVisible: false,
     };
   },
   methods: {
-    // Method to toggle the visibility of the login popup
     toggleLogin() {
       this.isLoginVisible = !this.isLoginVisible;
     },
-    // Method to toggle the visibility of the Program Manager popup
     toggleProgramManager() {
       this.isProgramManagerVisible = !this.isProgramManagerVisible;
     },
@@ -54,13 +48,15 @@ export default {
   top: 0;
   width: 100%;
   height: 100px;
-  background-color: white;
+  background-color: var(--color-background);
   z-index: 1000;
   align-items: center;
   position: fixed;
   display: flex;
   left: 0;
   justify-content: space-between;
+  padding: 0 2rem;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .navbar-nav {
@@ -71,33 +67,46 @@ export default {
   margin: 0;
 }
 
-.navbar-nav .nav-link {
-  color: #000;
+.nav-item {
+  display: flex;
+  align-items: center;
+}
+
+.nav-link {
+  color: var(--color-text);
   padding: 10px 15px;
   text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+  border-radius: 4px;
+}
+
+.nav-link:hover {
+  color: var(--vt-c-indigo);
+  background-color: var(--color-background-soft);
+}
+
+.nav-link.active {
+  color: var(--vt-c-indigo);
+  font-weight: 600;
 }
 
 .login-button {
-  color: white;
-  margin-left: -90px;
-  text-decoration: none;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
+  margin-right: 2rem;
 }
 
-.program-manager-button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  cursor: pointer;
-  border-radius: 5px;
-  font-size: 16px;
-  margin-left: 10px;
-}
+@media (max-width: 768px) {
+  .navbar {
+    padding: 0 1rem;
+  }
 
-.program-manager-button:hover {
-  background-color: #0056b3;
+  .navbar-nav {
+    gap: 10px;
+  }
+
+  .nav-link {
+    padding: 8px 12px;
+    font-size: 0.9rem;
+  }
 }
 </style>

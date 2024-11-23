@@ -4,22 +4,25 @@
   </header>
   
   <Navbar />
+  <router-view></router-view>
+  <MovieGrid />
   <BoxSection/>
   <FileCreation/>
-
-  
-  
 </template>
 
 <script setup>
-
+import { provide } from 'vue';
 import FileCreation from './components/FileCreation.vue';
-
 import Navbar from './components/Navbar.vue';
 import { ref } from 'vue';
 import BoxSection from './components/BoxSection.vue';
+import { useMovieStore } from './stores/movieStore';
 
-const title = ref('My First Vue App :)')
+const title = ref('My First Vue App :)');
+
+// Create and provide the movie store
+const movieStore = useMovieStore();
+provide('movieStore', movieStore);
 </script>
 
 <style scoped>
