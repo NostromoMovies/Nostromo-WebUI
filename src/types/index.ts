@@ -22,6 +22,8 @@ export interface LoginForm {
 export interface SignupForm extends LoginForm {
   firstname: string;
   lastname: string;
+  email: string;
+  password: string;
 }
 
 export interface FileForm {

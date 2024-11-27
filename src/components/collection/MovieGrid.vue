@@ -4,28 +4,18 @@
     <div v-if="loading" class="loading">Loading movies...</div>
     <div v-else-if="error" class="error">{{ error }}</div>
     <div v-else class="movie-grid">
-      <div 
-        v-for="movie in movies" 
+      <MovieContainer
+        v-for="movie in movies"
         :key="movie.movieID"
-        class="movie-card"
-      >
-        <div class="poster-container">
-          <img
-            :src="`/api/movies/${movie.movieID}/poster`"
-            :alt="movie.title"
-            class="poster-image"
-            @error="handleImageError"
-          />
-          <div class="overlay">
-            <h3 class="movie-title">{{ movie.title }}</h3>
-          </div>
-        </div>
-      </div>
+        :image="`/api/movies/${movie.movieID}/poster`"
+        :title="movie.title"
+      />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
+import MovieContainer from './MovieContainer.vue';
 import { inject, ref, computed } from 'vue'
 import type { Movie, MovieStore } from '@/types'
 
@@ -59,6 +49,14 @@ loadMovies()
 
 <style scoped>
 .container {
+  border: 2px solid #ccc;
+    
+  
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 1800px;
+    width: 920px;
   margin-top: 120px;
   padding: 0 2rem;
 }
@@ -67,7 +65,7 @@ loadMovies()
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
-  max-width: 1400px;
+  max-width: 600px;
   margin: 0 auto;
 }
 

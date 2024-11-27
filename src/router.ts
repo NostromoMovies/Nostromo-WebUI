@@ -1,18 +1,21 @@
 // src/router.ts
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
-import MovieGrid from './components/MovieGrid.vue'
+
+import BoxSection from './components/BoxSection.vue'
+import HomeGridSection from './components/HomeGridSection.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/collection',
     name: 'Collection',
-    component: MovieGrid
+    component: BoxSection
   },
   {
     path: '/',
     name: 'Home',
-    component: () => import('./components/BoxSection.vue')
+    component: HomeGridSection
   }
+  
 ]
 
 const router = createRouter({

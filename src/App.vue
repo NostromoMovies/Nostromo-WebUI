@@ -5,14 +5,14 @@
   
   <Navbar />
   <router-view></router-view>
-  <MovieGrid />
-  <BoxSection/>
-  <FileCreation/>
+  <!-- <BoxSection/> -->
+
 </template>
 
 <script setup>
 import { provide } from 'vue';
-import FileCreation from './components/FileCreation.vue';
+
+
 import Navbar from './components/Navbar.vue';
 import { ref } from 'vue';
 import BoxSection from './components/BoxSection.vue';
@@ -42,9 +42,11 @@ header {
     padding-top: 60px; /* Adjust based on the navbar height */
 }
 
-body {
-    margin: 0; /* Ensure there's no margin */
-    font-family: 'Nunito SemiBold';
-    background: #eee;
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Prevent horizontal scrolling */
 }
+
 </style>

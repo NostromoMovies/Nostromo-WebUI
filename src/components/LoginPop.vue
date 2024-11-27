@@ -5,8 +5,10 @@
       <form>
         <p class="brand-name">Nostromo</p>
         <label>Email:</label>
+        <input type="email" id="email" required v-model="formData.email" />
         <!----<input type="email" required v-model="email" />-->
         <label>Password:</label>
+        <input type="password" id="password" required v-model="formData.password" />
         <!----<input type="password" required v-model="password" />-->
         <button class="submit-button">Log In</button>
         <p class="reset-password">Forgot your password?</p>

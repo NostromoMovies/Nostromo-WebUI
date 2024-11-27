@@ -5,9 +5,9 @@
       <li class="nav-item">
         <router-link class="nav-link" :class="{ active: $route.path === '/' }" to="/">Home</router-link>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <router-link class="nav-link" :class="{ active: $route.path === '/dashboard' }" to="/dashboard">Dashboard</router-link>
-      </li>
+      </li> -->
       <li class="nav-item">
         <router-link class="nav-link" :class="{ active: $route.path === '/collection' }" to="/collection">Collection</router-link>
       </li>
@@ -47,6 +47,7 @@ export default {
 .navbar {
   top: 0;
   width: 100%;
+  max-width: 100%;
   height: 100px;
   background-color: var(--color-background);
   z-index: 1000;
