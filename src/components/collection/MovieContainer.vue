@@ -35,6 +35,8 @@
    width: 120px;
    height: 360px;
    margin: 10px;
+   
+   
  }
  
  .movie-card:hover {

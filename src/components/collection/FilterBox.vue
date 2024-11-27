@@ -14,7 +14,9 @@
   <style scoped>
   .filter-box {
     background-color: var(--color-background-soft);
-    width: 340px;
+    margin-top: 50px;
+    width: 430px;
+    border-radius: 5px;
     height: 1800px;
     padding: 1rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
