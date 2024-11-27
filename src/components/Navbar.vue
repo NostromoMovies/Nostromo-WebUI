@@ -92,9 +92,6 @@ export default {
   font-weight: 600;
 }
 
-.login-button {
-  margin-right: 2rem;
-}
 
 @media (max-width: 768px) {
   .navbar {

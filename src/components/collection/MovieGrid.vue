@@ -49,23 +49,19 @@ loadMovies()
 
 <style scoped>
 .container {
-  border: 2px solid #ccc;
-    
-  
-    border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: var(--color-background-soft);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    height: 1800px;
-    width: 920px;
-  margin-top: 120px;
-  padding: 0 2rem;
+    flex: 1; /* Changed from height: 100% */
+    width: 100%;
+    margin-top: 120px;
+    padding: 0 2rem;
+    overflow: auto; /* Add this to handle overflow */
 }
 
 .movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
-  max-width: 600px;
   margin: 0 auto;
 }
 

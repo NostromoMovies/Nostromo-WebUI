@@ -4,7 +4,7 @@ import type { Movie, MovieStore } from '../types'
 export const useMovieStore = (): MovieStore => {
   const movies = ref<Movie[]>([])
   const lastFetched = ref<number | null>(null)
-  const CACHE_DURATION = 1 * 60 * 1000 // 5 minutes in milliseconds
+  const CACHE_DURATION = 1 * 60 * 1000 // 1 minutes in milliseconds
 
   const fetchMovies = async (force = false): Promise<Movie[]> => {
     if (!force && 

@@ -38,8 +38,10 @@
     max-width: 400px;
     padding: 0.5rem;
     font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    background: var(--color-background-soft);
+    color: var(--color-text);
+    border: none; /* Add this to remove the border */
+    outline: none; /* Optional: removes the focus outline */
   }
   </style>
   

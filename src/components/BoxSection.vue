@@ -12,65 +12,62 @@
   </div>
 </template>
 
-  
-  <script>
+<script>
  
 import MovieGrid from './collection/MovieGrid.vue';
 import Searchbar from './collection/Searchbar.vue';
 import FilterBox from './collection/FilterBox.vue';
-
-
-  
+ 
   export default {
     name: 'BoxSection', // Name the component
     components: {
       MovieGrid,
-      Searchbar, 
+      Searchbar,
       FilterBox,// Register MovieContainer component
 },
   };
   </script>
-  
-  <style scoped>
 
-/* Parent Container */
+<style scoped>
+@import '../assets/base.css';
+
 .parent {
-  margin-top: 100px;
+  min-height: 100vh; /* Fill viewport height */
+  margin: 0; /* Remove top margin */
   display: flex;
-  justify-content: center; /* Horizontally center the child */
-  align-items: center; /* Vertically center the child */
+  justify-content: center;
+  align-items: flex-start; /* Changed from center to avoid squishing content */
   padding: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't add to height */
 }
 
-/* Outer Box Styling */
 .box {
-  display: flex; /* Enables horizontal layout */
-  flex-direction: row; /* Ensure children are aligned horizontally */
-  justify-content: space-between; /* Place main content on left and filter section on right */
-  align-items: flex-start; /* Align items to the top */
-  border: 2px solid #ccc;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
   padding: 20px;
-  margin-top: 50px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  margin: 0; /* Remove top margin */
+  /* border-radius: 8px; */
+  background-color: var(--vt-c-black);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 100%;
-  
+  min-height: calc(100vh - 40px); /* Account for parent padding */
 }
 
-/* Main Content Section (Searchbar + MovieGrid) */
 .main-content {
-  flex: 1; 
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px; 
+  gap: 20px;
+  background-color: var(--vt-c-black);
+  min-height: calc(100vh - 40px); /* Changed from height: 100% */
+  overflow: auto; /* Add this to handle overflow */
 }
-
 
 .filter-section {
-  width: 400px; 
+  width: 400px;
+  background-color: var(--vt-c-black);
+  height: 100%; /* Fill parent height */
 }
 </style>
-
-  
-  
