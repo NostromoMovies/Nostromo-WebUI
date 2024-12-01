@@ -33,7 +33,7 @@ const handleImageError = (e: Event) => {
   cursor: pointer;
   transition: transform 0.2s;
   width: 100%;
-  max-width: 250px; /* Add max-width for larger screens */
+  /* max-width: 250px; */
   margin: 20;
 }
 

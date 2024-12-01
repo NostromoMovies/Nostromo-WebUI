@@ -41,13 +41,14 @@ import FilterBox from './collection/FilterBox.vue';
 
 .content {
   max-width: 100%;
-  margin: 0;
+  margin: 30px;
 }
 
 .search-container {
   width: 100%;
   margin:  0;
   padding: 0;
+  max-width: 25%
 }
 
 .search-input {

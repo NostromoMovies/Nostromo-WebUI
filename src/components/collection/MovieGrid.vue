@@ -61,9 +61,12 @@ loadMovies()
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Increased size */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 200px));
     gap: 2rem;
-    margin: 0 auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     width: 100%;
 }
 
