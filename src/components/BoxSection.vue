@@ -2,7 +2,11 @@
   <div class="app-container">
     <div class="content">
       <div class="search-container">
-        <!-- Your search bar -->
+        <input 
+          type="search" 
+          placeholder="Search..." 
+          class="search-input"
+        />
       </div>
       <div class="main-content">
         <MovieGrid />
@@ -40,14 +44,25 @@ import FilterBox from './collection/FilterBox.vue';
   margin: 0 auto;
 }
 
-.main-content {
-  display: flex;
-  gap: 20px; /* Reduced gap between grid and filter */
-  width: 100%;
-}
-
 .search-container {
   width: 100%;
-  margin-bottom: 20px;
+  margin: 20px 0;
+  padding: 0 20px;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 5px;
+  border: 1px solid var(--color-border);
+  background: var(--color-background-soft);
+  color: var(--color-text);
+  font-size: 16px;
+}
+
+.main-content {
+  display: flex;
+  gap: 20px;
+  width: 100%;
 }
 </style>

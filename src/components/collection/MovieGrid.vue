@@ -52,16 +52,16 @@ loadMovies()
     background-color: var(--color-background-soft);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     flex: 1;
-    width: 100%; /* Fill available width */
+    width: 100%;
     border-radius: 5px;
     margin-top: 50px;
-    padding: 0 2rem;
+    padding: 2rem;
     overflow: auto;
 }
 
 .movie-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Increased from 250px */
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* Increased size */
     gap: 2rem;
     margin: 0 auto;
     width: 100%;
@@ -78,17 +78,18 @@ loadMovies()
 
 .poster-container {
     position: relative;
-    aspect-ratio: 2/3;
     width: 100%;
-    border-radius: 0.5rem;
-    overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding-top: 150%; /* This maintains 2:3 aspect ratio */
 }
 
 .poster-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Changed from cover to contain */
+    border-radius: 0.5rem;
 }
 
 .overlay {
