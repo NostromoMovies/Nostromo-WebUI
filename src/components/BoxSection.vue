@@ -53,8 +53,7 @@ import FilterBox from './collection/FilterBox.vue';
 .search-input {
   width: 100%;
   padding: 12px;
-  border-radius: 5px;
-  border: 1px solid var(--color-border);
+  border: none;
   background: var(--color-background-soft);
   color: var(--color-text);
   font-size: 16px;
