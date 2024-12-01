@@ -53,7 +53,6 @@ loadMovies()
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     flex: 1; /* Changed from height: 100% */
     width: 1100px;
-    border-radius: 5px;
     margin-top: 50px;
     padding: 0 2rem;
     overflow: auto; /* Add this to handle overflow */
@@ -61,7 +60,6 @@ loadMovies()
 
 .movie-grid {
   display: grid;
-  border: 3px solid #000;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 2rem;
   margin: 0 auto;

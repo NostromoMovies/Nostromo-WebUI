@@ -1,21 +1,20 @@
 <template>
-  <div class="parent">
-    <div class="box">
-      <div class ="taskbar">
-        <DashboardTaskBar></DashboardTaskBar>
+  <div class="app-container">
+    <Navbar />
+    <div class="content-wrapper">
+      <div class="search-bar">
+        <!-- Your search component here -->
+        <input type="search" placeholder="Search..." class="search-input" />
       </div>
       
-        
       <div class="main-content">
-        <MovieGrid />
-        <FilterBox></FilterBox>
+        <div class="movie-section">
+          <MovieGrid />
+        </div>
+        <div class="filter-section">
+          <FilterBox />
+        </div>
       </div>
-        
-   
-      <!-- <div class="filter-section">
-        
-        <FilterBox></FilterBox>
-      </div> -->
     </div>
   </div>
 </template>
@@ -37,47 +36,43 @@ import FilterBox from './collection/FilterBox.vue';
   </script>
 
 <style scoped>
-@import '../assets/base.css';
-
-.parent {
-  min-height: 100vh; /* Fill viewport height */
-  margin: 0; /* Remove top margin */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start; /* Changed from center to avoid squishing content */
-  padding: 40px;
-  box-sizing: border-box; /* Ensure padding doesn't add to height */
+.app-container {
+  min-height: 100vh;
+  background-color: var(--color-background);
 }
 
-.box {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  padding: 20px;
-  margin: 0; /* Remove top margin */
-  border-radius: 8px;
-  border-style: solid;
-  background-color: var(--vt-c-black);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  min-height: calc(100vh - 40px); /* Account for parent padding */
+.content-wrapper {
+  padding: 120px 2rem 2rem;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.search-bar {
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 4px;
+  border: 1px solid var(--color-border);
+  background: var(--color-background-soft);
+  color: var(--color-text);
 }
 
 .main-content {
-  flex: 1; 
   display: flex;
-  
-  flex-direction: row;
-  gap: 20px;
+  gap: 2rem;
+  justify-content: space-between;
 }
+
+.movie-section {
+  flex: 1;
+  min-width: 0; /* Prevents flex items from overflowing */
+}
+
 .filter-section {
-  width: 400px;
-  background-color: var(--vt-c-black);
-  height: 100%; /* Fill parent height */
-}
-.taskbar{
-  width: 100%;
-  height: 20%;
+  width: 430px;
+  flex-shrink: 0;
 }
 </style>
