@@ -51,18 +51,20 @@ loadMovies()
 .container {
     background-color: var(--color-background-soft);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    flex: 1; /* Changed from height: 100% */
-    width: 1100px;
+    flex: 1;
+    width: 100%; /* Fill available width */
+    border-radius: 5px;
     margin-top: 50px;
     padding: 0 2rem;
-    overflow: auto; /* Add this to handle overflow */
+    overflow: auto;
 }
 
 .movie-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 2rem;
-  margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Increased from 250px */
+    gap: 2rem;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .movie-card {
@@ -75,11 +77,12 @@ loadMovies()
 }
 
 .poster-container {
-  position: relative;
-  aspect-ratio: 2/3;
-  border-radius: 0.5rem;
-  overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    aspect-ratio: 2/3;
+    width: 100%;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .poster-image {
