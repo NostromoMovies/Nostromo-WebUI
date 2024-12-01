@@ -16,6 +16,7 @@
   
   // Handle button click
   const handleClick = () => {
+    console.log('Button clicked!');
     emit("toggle-popup", true); // Emit event to show the popup
   };
   </script>

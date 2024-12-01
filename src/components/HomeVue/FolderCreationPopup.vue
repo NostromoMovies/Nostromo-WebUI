@@ -2,18 +2,21 @@
   <div v-if="show" class="popup">
     <div class="popup-content">
       <button class="close-button" @click="close">x</button>
-      <form @submit.prevent="saveFile">
-        <p class="brand-name">Add New File</p>
+      <form @submit.prevent="saveFolder">
+        <p class="brand-name">Add New Folder</p>
 
-        <label for="file-name">File Name</label>
-        <input id="file-name" type="text" required v-model="fileName" />
-
-        <label for="file-location">File Location</label>
-        <input id="file-location" type="text" required v-model="fileLocation" />
+        <label for="folder-location">Folder Location</label>
+        <input 
+          id="folder-location" 
+          type="text" 
+          required 
+          v-model="folderLocation"
+          placeholder="Enter folder path"
+        />
 
         <div class="button-group">
           <button type="button" class="cancel" @click="close">Cancel</button>
-          <button type="submit" class="save-button">Save</button>
+          <button type="submit" class="save-button">Add Folder</button>
         </div>
       </form>
     </div>
@@ -21,28 +24,41 @@
 </template>
 
 <script setup lang="ts">
-import { ref, defineEmits } from "vue";
+import { ref } from "vue";
 
-// Define emit event
+const props = defineProps<{
+  show: boolean
+}>();
+
 const emit = defineEmits<{
   (event: "toggle-visibility", show: boolean): void;
 }>();
 
-
-const fileName = ref("");
-const fileLocation = ref("");
-const show = ref(false);
-
+const folderLocation = ref("");
 
 const close = () => {
-  show.value = false;
-  emit("toggle-visibility", show.value);
+  folderLocation.value = ""; // Reset input on close
+  emit("toggle-visibility", false);
 };
 
+const saveFolder = async () => {
+  try {
+    const response = await fetch(`/api/folders/set?path=${encodeURIComponent(folderLocation.value)}`, {
+      method: 'GET'
+    });
 
-const saveFile = () => {
-  console.log("File saved:", { name: fileName.value, location: fileLocation.value });
-  close();
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(errorText || 'Failed to add folder');
+    }
+
+    console.log('Folder added successfully:', folderLocation.value);
+    close();
+  } catch (error) {
+    console.error('Error adding folder:', error);
+    // Here you might want to show an error message to the user
+    // For now, we'll just log it to console
+  }
 };
 </script>
 
@@ -116,6 +132,7 @@ input {
   display: flex;
   justify-content: space-between;
   gap: 10px;
+  margin-top: 20px;
 }
 
 .cancel,
@@ -123,5 +140,26 @@ input {
   flex: 1;
   padding: 10px;
   border: none;
-  border-radius: 5
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
 }
+
+.cancel {
+  background-color: #f3f3f3;
+  color: #666;
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.cancel:hover {
+  background-color: #e6e6e6;
+}
+</style>
