@@ -5,31 +5,11 @@
       <h2 class="title">Select Import Folder</h2>
 
       <div class="folder-browser">
-        <div v-for="item in folderStructure" :key="item.path" class="folder-item">
-          <div 
-            class="folder-row"
-            :class="{ 'selected': selectedFolder === item.path }"
-            @click="toggleFolder(item)"
-          >
-            <span class="expand-icon">
-              {{ item.isExpanded ? '▼' : '▶' }}
-            </span>
-            {{ getDisplayName(item.path) }}
-          </div>
-
-          <!-- Recursive rendering of subfolders -->
-          <div v-if="item.isExpanded && item.subfolders" class="subfolder-container">
-            <div 
-              v-for="subfolder in item.subfolders" 
-              :key="subfolder.path"
-              class="folder-row"
-              :class="{ 'selected': selectedFolder === subfolder.path }"
-              @click.stop="selectFolder(subfolder.path)"
-            >
-              {{ getDisplayName(subfolder.path) }}
-            </div>
-          </div>
-        </div>
+        <FolderTree 
+          :items="folderStructure"
+          :selected-folder="selectedFolder"
+          @select="selectFolder"
+        />
       </div>
 
       <div class="button-group">
@@ -48,6 +28,7 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue';
+import FolderTree from './FolderTree.vue';
 
 interface FolderAndFiles {
   files: number;
@@ -61,16 +42,11 @@ interface DriveInfo {
   type: string;
 }
 
-interface FolderInfo {
-  path: string;
-  isAccessible: boolean;
-  sizes: FolderAndFiles;
-}
-
 interface FolderStructureItem {
   path: string;
   isExpanded: boolean;
-  subfolders?: FolderInfo[];
+  isLoading?: boolean;
+  subfolders?: FolderStructureItem[];
 }
 
 const props = defineProps<{
@@ -84,7 +60,6 @@ const emit = defineEmits<{
 const folderStructure = ref<FolderStructureItem[]>([]);
 const selectedFolder = ref<string | null>(null);
 
-// Load initial drives/mount points
 const loadDrives = async () => {
   try {
     const response = await fetch('/api/folders/Drives');
@@ -93,45 +68,16 @@ const loadDrives = async () => {
     
     folderStructure.value = drives.map(drive => ({
       path: drive.path,
-      isExpanded: false
+      isExpanded: false,
+      isLoading: false
     }));
   } catch (error) {
     console.error('Error loading drives:', error);
   }
 };
 
-// Load subfolders for a specific path
-const loadSubfolders = async (path: string) => {
-  try {
-    const response = await fetch(`/api/folders?path=${encodeURIComponent(path)}`);
-    if (!response.ok) throw new Error('Failed to load subfolders');
-    return await response.json();
-  } catch (error) {
-    console.error('Error loading subfolders:', error);
-    return [];
-  }
-};
-
-const toggleFolder = async (item: FolderStructureItem) => {
-  // Toggle expansion
-  item.isExpanded = !item.isExpanded;
-  
-  // Load subfolders if expanding and not already loaded
-  if (item.isExpanded && !item.subfolders) {
-    item.subfolders = await loadSubfolders(item.path);
-  }
-  
-  // Select the folder
-  selectFolder(item.path);
-};
-
 const selectFolder = (path: string) => {
   selectedFolder.value = path;
-};
-
-const getDisplayName = (path: string) => {
-  // Extract the last part of the path for display
-  return path.split('/').pop() || path;
 };
 
 const submitSelectedFolder = async () => {
@@ -156,7 +102,6 @@ const close = () => {
   emit("toggle-visibility", false);
 };
 
-// Load drives when component is mounted
 onMounted(loadDrives);
 </script>
 
@@ -193,36 +138,6 @@ onMounted(loadDrives);
   background-color: #2a2a2a;
   border-radius: 4px;
   padding: 10px;
-}
-
-.folder-item {
-  margin: 2px 0;
-}
-
-.folder-row {
-  padding: 8px;
-  cursor: pointer;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.folder-row:hover {
-  background-color: #3a3a3a;
-}
-
-.folder-row.selected {
-  background-color: #4a4a4a;
-}
-
-.expand-icon {
-  font-size: 0.8em;
-  width: 20px;
-}
-
-.subfolder-container {
-  margin-left: 20px;
 }
 
 .button-group {
