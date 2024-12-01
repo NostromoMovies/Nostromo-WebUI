@@ -34,7 +34,7 @@ const handleImageError = (e: Event) => {
   transition: transform 0.2s;
   width: 100%;
   max-width: 250px; /* Add max-width for larger screens */
-  margin: 0 auto; /* Center the card */
+  margin: 20;
 }
 
 .movie-card:hover {

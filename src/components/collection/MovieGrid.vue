@@ -55,7 +55,7 @@ loadMovies()
     width: 100%;
     border-radius: 5px;
     margin-top: 50px;
-    padding: 2rem;
+    padding: 1rem;
     overflow: auto;
 }
 
