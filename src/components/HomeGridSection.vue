@@ -2,6 +2,7 @@
     <div class="parent">
       <div class="box">
         <UnrecognizedFileBox></UnrecognizedFileBox>
+        <UnrecognizedFiles></UnrecognizedFiles>
         
       </div>
     </div>
@@ -9,11 +10,26 @@
   
   <script setup lang="ts">
   
-  import UnrecognizedFileBox from './HomeVue/UnrecognizedFileBox.vue';
+      import UnrecognizedFileBox from './HomeVue/UnrecognizedFileBox.vue';
+      import UnrecognizedFiles from './HomeVue/UnrecognizedFiles.vue';
 
   </script>
   
   <style scoped>
+      .unrecognized-files {
+          position: fixed;
+          top: 100px;
+          right: 20px;
+          background-color: rgb(24, 24, 24);
+          color: #fff;
+          padding: 20px;
+          border-radius: 50px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          width: 800px;
+          height: 1000px;
+          overflow-y: auto;
+          z-index: 1000;
+      }
   /* Global Fix for Box Model */
   * {
     box-sizing: border-box;

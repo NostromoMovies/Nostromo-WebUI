@@ -1,5 +1,12 @@
 @import './base.css';
 
+@font-face {
+    font-family: 'C64 Pro';
+    src: url('./fonts/C64_Pro-STYLE.woff2') format('woff2'), url('./fonts/C64_Pro-STYLE.woff') format('woff'), url('./fonts/C64_Pro-STYLE.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 #app {
   /*max-width: 1280px; */
   margin: 0 auto;

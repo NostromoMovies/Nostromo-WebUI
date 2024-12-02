@@ -1,4 +1,4 @@
-<!-- MovieGrid.vue -->
+﻿<!-- MovieGrid.vue -->
 <template>
   <div class="container">
     <CreateFolderButton @toggle-popup="togglePopup"></CreateFolderButton>
