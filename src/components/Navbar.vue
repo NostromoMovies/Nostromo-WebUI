@@ -1,46 +1,93 @@
-<!-- Navbar.vue -->
 <template>
   <div class="navbar">
     <ul class="navbar-nav">
+      <!-- If the user is logged in, show Home link; otherwise show Nostromo -->
       <li class="nav-item">
-        <router-link class="nav-link" :class="{ active: $route.path === '/' }" to="/">Home</router-link>
+        <router-link
+          v-if="isAuthenticated"
+          class="nav-link"
+          :class="{ active: $route.path === '/home' }"
+          to="/home"
+        >
+          Home
+        </router-link>
+        <span v-else class="nav-link">Nostromo</span>
       </li>
-      <!-- <li class="nav-item">
-        <router-link class="nav-link" :class="{ active: $route.path === '/dashboard' }" to="/dashboard">Dashboard</router-link>
-      </li> -->
+
+
+      <!-- If the user is logged in, show Dashboard link; otherwise show About Us -->
       <li class="nav-item">
-        <router-link class="nav-link" :class="{ active: $route.path === '/collection' }" to="/collection">Collection</router-link>
+        <router-link
+          v-if="isAuthenticated"
+          class="nav-link"
+          :class="{ active: $route.path === '/dashboard' }"
+          to="/dashboard"
+        >
+          Dashboard
+        </router-link>
+        <span v-else class="nav-link">About Us</span>
       </li>
+
+
+      
+   
     </ul>
 
-    <div class="login-button">
-      <PopupManager v-model:show="isLoginVisible" />
-    </div>
+    <LoginButton 
+  v-if="!isAuthenticated" 
+  @login-success="handleLogin"
+/>
+<ProfileButton 
+  v-else 
+  @loggedOut="handleLogout" 
+/>
+
   </div>
 </template>
 
-<script>
-import PopupManager from './PopupManager.vue';
+<script lang="ts">
+import { defineComponent } from 'vue';
+import LoginButton from './HomeVue/LoginButton.vue';
+import ProfileButton from './ProfileButton.vue';
+import { useAuthStore } from '@/services/authStore';
 
-export default {
+export default defineComponent({
   components: {
-    PopupManager,
+    LoginButton,
+    ProfileButton,
   },
   data() {
     return {
-      isLoginVisible: false,
-      isProgramManagerVisible: false,
+      isLoginVisible: false as boolean,
+      isLoggedIn: false as boolean,  // type annotation for boolean
     };
   },
+  computed: {
+ 
+    isAuthenticated() {
+      const authStore = useAuthStore();
+      return authStore.isAuthenticated;
+    }
+  },
   methods: {
-    toggleLogin() {
+    toggleLogin(): void {
       this.isLoginVisible = !this.isLoginVisible;
     },
-    toggleProgramManager() {
-      this.isProgramManagerVisible = !this.isProgramManagerVisible;
+    handleLogin(): void {
+      this.isLoggedIn = true;  
+      console.log('User has logged in');
+       
+    },
+    handleLogout(): void {
+      
+      const authStore = useAuthStore();
+      authStore.logout(); 
+      console.log("User has logged out"); 
     },
   },
-};
+});
+
+ 
 </script>
 
 <style scoped>

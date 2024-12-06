@@ -3,26 +3,32 @@
     <!-- <h1>{{ title }}</h1> -->
   </header>
   
-  <Navbar />
+  <Navbar v-if="!isRegisterPage" />
   <router-view></router-view>
   <!-- <BoxSection/> -->
 
 </template>
 
-<script setup>
-import { provide } from 'vue';
-
-
+<script setup lang="ts">
+import { ref, computed, provide } from 'vue';
 import Navbar from './components/Navbar.vue';
-import { ref } from 'vue';
-import BoxSection from './components/BoxSection.vue';
-import { useMovieStore } from './stores/movieStore';
 
-const title = ref('My First Vue App :)');
+import { useMovieStore } from './stores/movieStore';
+import { useRoute } from 'vue-router';  // Import useRoute to get current route
+
+
 
 // Create and provide the movie store
 const movieStore = useMovieStore();
 provide('movieStore', movieStore);
+
+// Use useRoute to access the current route
+const route = useRoute();
+
+// Computed property to check if the current route is the register page
+const isRegisterPage = computed(() => {
+      return route.name === 'register' ;
+    });
 </script>
 
 <style lang="css" >

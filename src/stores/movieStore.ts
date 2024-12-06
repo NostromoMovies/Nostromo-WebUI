@@ -1,11 +1,16 @@
 import { ref } from 'vue'
 import type { Movie, MovieStore } from '../types'
 
+//Define a function useMovieStore that return an object of type Moviestore 
 export const useMovieStore = (): MovieStore => {
+  
   const movies = ref<Movie[]>([])
+  //create a reactive reference that holds an array of movie objects any changes to the list will trigger update to UI
   const lastFetched = ref<number | null>(null)
   const CACHE_DURATION = 1 * 60 * 1000 // 1 minutes in milliseconds
 
+  //Async function that fetch movie data from api 
+  //force param determine whether to bypass caching and always fetch fresh data 
   const fetchMovies = async (force = false): Promise<Movie[]> => {
     if (!force && 
         movies.value.length > 0 && 
