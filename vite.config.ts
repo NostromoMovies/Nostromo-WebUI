@@ -8,6 +8,11 @@ const serverWebuiPath = path.resolve(__dirname, '../NostromoServer/Nostromo.Serv
 export default defineConfig({
   plugins: [vue()],
   base: '/webui/',
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')  // Add this line to resolve the '@' alias
+    }
+  },
   server: {
     port: 5173,
     proxy: {

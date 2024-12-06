@@ -15,14 +15,13 @@ export interface MovieStore {
 }
 
 export interface LoginForm {
-  email: string;
+  username: string;
   password: string;
+  device: string;
 }
 
-export interface SignupForm extends LoginForm {
-  firstname: string;
-  lastname: string;
-  email: string;
+export interface SignupForm  {
+  username: string;
   password: string;
 }
 
