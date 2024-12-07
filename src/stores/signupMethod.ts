@@ -6,7 +6,8 @@ import { postService } from '@/api/PostService';
 export const useSignupStore = (router: Router) => {
   const form = ref<SignupForm>({
     username: '',
-    password: ''
+    password: '',
+    isAdmin: true
   });
 
   const message = ref<string>('');
