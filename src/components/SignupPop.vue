@@ -2,13 +2,13 @@
 	<form @submit.prevent="handleSubmit" class="signup-form">
 	  <p class="brand-name">Nostromo</p>
   
-	  <label for="email">Username:</label>
+	  <label for="username">Username:</label>
 	  <input
-		type="email"
-		id="email"
+		type="text"
+		id="username"
 		required
 		v-model="form.username"
-		placeholder="Enter your email"
+		placeholder="Enter your username"
 	  />
   
 	  <label for="password">Password:</label>
@@ -19,47 +19,28 @@
 		v-model="form.password"
 		placeholder="Enter your password"
 	  />
-	  
-	  <!-- Error message for password -->
-	  <p v-if="passwordError" class="error-message">{{ passwordError }}</p>
   
 	  <button type="submit" class="submit-button">Sign Up</button>
 	</form>
   </template>
   
   <script lang="ts">
-  import { defineComponent, ref } from 'vue';
+  import { defineComponent } from 'vue';
   import { useRouter } from 'vue-router';
   import { useSignupStore } from '@/stores/signupMethod';
-  
   
   export default defineComponent({
 	name: 'Signup',
 	setup() {
 	  const router = useRouter();
-	  const passwordError = ref('');
-	  
-	  const { form, register,message } = useSignupStore(router);
-
-	  const validatePassword = (password: string) => {
-	  const regex = /^(?=.*\d)[A-Za-z0-9]{7,}$/;  
-      return regex.test(password);
-    };
-	
+	  const { form, register, message } = useSignupStore(router);
   
 	  const handleSubmit = async () => {
-		if(!validatePassword(form.value.password)){
-			passwordError.value = 'Password must be at least 7 char long and contain number'
-			return;
-		}
-		    passwordError.value = '';
-			await register();
-		
+		await register();
 	  };
   
 	  return {
 		form,
-		passwordError,
 		handleSubmit,
 		message
 	  };

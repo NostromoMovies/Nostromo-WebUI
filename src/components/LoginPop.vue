@@ -4,19 +4,16 @@
       <button class="close-button" @click="close">x</button>
       <form @submit.prevent="handleSubmit" class="login-form">
         <p class="brand-name">Nostromo</p>
-        <label>Email:</label>
-        <input type="email" id="email" required v-model="form.username" />
+        <label>Username:</label>
+        <input type="text" id="username" required v-model="form.username" />
         <label>Password:</label>
         <input type="password" id="password" required v-model="form.password" />
         <p v-if="passwordError" class="error-message">{{ passwordError }}</p>
         <button type="submit" class="submit-button">Log In</button>
         <p class="reset-password">Forgot your password?</p>
-      
-  
-
       </form>
       <div class="sign-up" >
-        <router-link class="nav-link" :class="{ active: $route.path === '/register' }" to="/register">Not a member? Sign Up</router-link> 
+        <router-link class="nav-link" :class="{ active: $route.path === '/register' }" to="/register">Create Profile</router-link>
       </div>
     </div>
   </div>
