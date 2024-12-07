@@ -18,7 +18,7 @@
           </form>
           <div class="sign-up">
             <router-link class="nav-link" :class="{ active: $route.path === '/register' }" to="/register">
-              Not a member? Sign Up
+              Create Profile
             </router-link>
           </div>
         </div>
