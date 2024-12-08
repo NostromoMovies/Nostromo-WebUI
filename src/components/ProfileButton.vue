@@ -1,7 +1,7 @@
 <template>
     <div>
       <button @click="toggleDropdown" class="dropdown-button">
-        Profile
+        <!-- Profile -->
       </button>
   
       <div v-if="isDropdownVisible" class="dropdown-menu">
@@ -50,19 +50,34 @@
   
   <style scoped>
   .dropdown-button {
-    padding: 10px;
-    background-color: white;
+    height: 48px;
+    width: 48px;
+    margin-right: 15px;
+    border-radius: 50%;
+    background-color: var(--accent-tertiary);
     color: white;
     border: none;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+  }
+  
+  .dropdown-button:hover {
+    background-color: var(--accent-primary); /* Emerald 600 */
+    box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
   }
   
   .dropdown-menu {
     position: absolute;
-    background-color: white;
-    border: 1px solid #ddd;
+    margin-right: 15px;
+    background-color: var(--color-background-soft);
+    border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-top: 5px;
+    right: 0; /* This will align the dropdown to the right of the button */
   }
   
   .dropdown-menu ul {
@@ -72,12 +87,14 @@
   }
   
   .dropdown-menu li {
-    padding: 10px;
+    padding: 10px 20px;
     cursor: pointer;
+    color: var(--accent-primary);
   }
   
   .dropdown-menu li:hover {
-    background-color: #f1f1f1;
+    color: var(--accent-hover-text);
+    background-color: var(--accent-hover);
   }
   </style>
   

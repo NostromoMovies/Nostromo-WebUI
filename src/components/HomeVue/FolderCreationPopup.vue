@@ -161,7 +161,7 @@ onMounted(loadDrives);
 }
 
 .select {
-  background-color: #6b4fbb;
+  background-color: var(--accent-secondary);
   color: #fff;
 }
 

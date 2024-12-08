@@ -1,46 +1,39 @@
 <template>
   <div class="navbar">
-    <ul class="navbar-nav">
-      <!-- If the user is logged in, show Home link; otherwise show Nostromo -->
-      <li class="nav-item">
-        <router-link
-          v-if="isAuthenticated"
-          class="nav-link"
-          :class="{ active: $route.path === '/dashboard' }"
-          to="/dashboard"
-        >
-          Dashboard
-        </router-link>
-        <span v-else class="nav-link">Nostromo</span>
-      </li>
-
-
-      <!-- If the user is logged in, show Dashboard link; otherwise show About Us -->
-      <li class="nav-item">
-        <router-link
-          v-if="isAuthenticated"
-          class="nav-link"
-          :class="{ active: $route.path === '/collection' }"
-          to="/collection"
-        >
-          Collection
-        </router-link>
-      </li>
-
-
-      
-   
-    </ul>
-
-    <LoginButton 
-  v-if="!isAuthenticated" 
-  @login-success="handleLogin"
-/>
-<ProfileButton 
-  v-else 
-  @loggedOut="handleLogout" 
-/>
-
+    <div class="navbar-content">
+      <div class="logo">Nostromo</div>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <router-link
+            v-if="isAuthenticated"
+            class="nav-link"
+            :class="{ active: $route.path === '/dashboard' }"
+            to="/dashboard"
+          >
+            Dashboard
+          </router-link>
+          <span v-else class="nav-link">Nostromo</span>
+        </li>
+        <li class="nav-item">
+          <router-link
+            v-if="isAuthenticated"
+            class="nav-link"
+            :class="{ active: $route.path === '/collection' }"
+            to="/collection"
+          >
+            Collection
+          </router-link>
+        </li>
+      </ul>
+    </div>
+    <LoginButton
+      v-if="!isAuthenticated"
+      @login-success="handleLogin"
+    />
+    <ProfileButton
+      v-else
+      @loggedOut="handleLogout"
+    />
   </div>
 </template>
 
@@ -104,6 +97,8 @@ export default defineComponent({
   justify-content: space-between;
   padding: 0 2rem;
   border-bottom: 1px solid var(--color-border);
+  padding-top: 1rem;
+  padding-bottom: 0.5rem
 }
 
 .navbar-nav {
@@ -120,22 +115,43 @@ export default defineComponent({
 }
 
 .nav-link {
-  color: var(--color-text);
-  padding: 10px 15px;
+  color: var(--accent-tertiary);
+  padding-top: 10px;
+  padding-bottom: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
   border-radius: 4px;
 }
 
-.nav-link:hover {
-  color: var(--vt-c-indigo);
-  background-color: var(--color-background-soft);
+
+.navbar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+}
+
+.logo {
+  font-family: 'Nostromo3D', sans-serif;
+  font-size: 2.5rem;
+  color: var(--accent-primary);
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  line-height: 1;
 }
 
 .nav-link.active {
-  color: var(--vt-c-indigo);
+  color: var(--accent-primary);
   font-weight: 600;
+}
+
+.nav-link:hover {
+  color: var(--accent-hover-text);
+  background-color: var(--accent-hover);
 }
 
 
@@ -151,6 +167,10 @@ export default defineComponent({
   .nav-link {
     padding: 8px 12px;
     font-size: 0.9rem;
+  }
+
+  .logo {
+    font-size: 1.5rem;
   }
 }
 </style>

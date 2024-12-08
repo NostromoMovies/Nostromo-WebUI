@@ -6,6 +6,31 @@
     font-weight: normal;
     font-style: normal;
 } */
+@font-face {
+  font-family: 'NostromoOutline-LightOblique';
+  src: url('./fonts/Nostromo Outline/NostromoOutline-LightOblique.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'NostromoRegular-Light';
+  src: url('./fonts/Nostromo Regular/NostromoRegular-Light.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'NostromoRegular-Medium';
+  src: url('./fonts/Nostromo Regular/NostromoRegular-Medium.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'NostromoOutline-BlackOblique';
+  src: url('./fonts/Nostromo Outline/NostromoOutline-BlackOblique.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Nostromo3D';
+  src: url('./fonts/nostromo/Nostromo3D-nRqgR.ttf') format('truetype');
+}
+
 
 #app {
   /*max-width: 1280px; */

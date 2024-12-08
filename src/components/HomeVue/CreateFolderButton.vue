@@ -1,7 +1,6 @@
 <!-- CreateFolderButton.vue -->
 <template>
     <button class="folder-button" @click="handleClick">
-      <span class="icon">📁</span>
       <span>Create Folder</span>
     </button>
   </template>

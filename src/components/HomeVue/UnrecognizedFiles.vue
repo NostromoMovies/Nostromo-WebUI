@@ -29,7 +29,7 @@
 
 <style scoped>
     .unrecognized-files {
-        background-color: rgb(24, 24, 24);
+        background-color: var(--color-background-soft);
         color: #fff;
         padding: 20px;
         border-radius: 8px;

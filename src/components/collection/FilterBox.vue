@@ -21,6 +21,7 @@
     padding: 1rem;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     margin-left: auto;
+    color: var(--color-text);
   }
   
   label {
