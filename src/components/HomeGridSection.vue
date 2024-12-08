@@ -1,67 +1,58 @@
 <template>
-    <div class="parent">
-      <div class="box">
-        <UnrecognizedFileBox></UnrecognizedFileBox>
+  <div class="parent">
+    <div class="grid-container">
+      <!-- Left Rectangle -->
+      <div class="rectangle">
+        <div class="content-wrapper">
+          <UnrecognizedFileBox></UnrecognizedFileBox>
+        </div>
+      </div>
+      
+      <!-- Right Rectangle -->
+      <div class="rectangle">
         <UnrecognizedFiles></UnrecognizedFiles>
-        
       </div>
     </div>
-  </template>
-  
-  <script setup lang="ts">
-  
-      import UnrecognizedFileBox from './HomeVue/UnrecognizedFileBox.vue';
-      import UnrecognizedFiles from './HomeVue/UnrecognizedFiles.vue';
+  </div>
+</template>
 
-  </script>
-  
-  <style scoped>
-      .unrecognized-files {
-          position: fixed;
-          top: 100px;
-          right: 20px;
-          background-color: rgb(24, 24, 24);
-          color: #fff;
-          padding: 20px;
-          border-radius: 50px;
-          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-          width: 800px;
-          height: 1000px;
-          overflow-y: auto;
-          z-index: 1000;
-      }
-  /* Global Fix for Box Model */
-  * {
-    box-sizing: border-box;
-  }
-  
+<script setup lang="ts">
+import UnrecognizedFileBox from './HomeVue/ImportFolderBox.vue';
+import UnrecognizedFiles from './HomeVue/UnrecognizedFiles.vue';
+</script>
 
-  .parent {
-  margin-top: 100px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  overflow: hidden;
+<style scoped>
+/* Global Fix for Box Model */
+* {
+  box-sizing: border-box;
 }
-  
 
-  .box {
-    
-    display: flex; 
-    flex-direction: row; 
-    justify-content: space-between; 
-    align-items: flex-start; 
-    border: 2px solid #ccc;
-    padding: 40px; 
-    margin-top: 50px;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-    width: 80vh;
-    max-width: 90vw; 
-    height: 80vh; 
-    align-self: center;
-  }
-  </style>
-  
+.parent {
+  margin-top: 100px;
+  padding: 20px;
+  width: 100%;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;  /* Two equal columns */
+  gap: 20px;  /* Space between rectangles */
+  max-width: 1600px;  /* Maximum width of the container */
+  margin: 0 auto;  /* Center the container */
+}
+
+.rectangle {
+  background-color: rgb(24, 24, 24);
+  color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  height: 600px;  /* Fixed height, adjust as needed */
+  position: relative;  /* For positioning the button */
+}
+
+.content-wrapper {
+  height: 100%;
+  position: relative;
+}
+</style>

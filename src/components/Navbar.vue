@@ -6,10 +6,10 @@
         <router-link
           v-if="isAuthenticated"
           class="nav-link"
-          :class="{ active: $route.path === '/home' }"
-          to="/home"
+          :class="{ active: $route.path === '/dashboard' }"
+          to="/dashboard"
         >
-          Home
+          Dashboard
         </router-link>
         <span v-else class="nav-link">Nostromo</span>
       </li>
@@ -20,12 +20,11 @@
         <router-link
           v-if="isAuthenticated"
           class="nav-link"
-          :class="{ active: $route.path === '/dashboard' }"
-          to="/dashboard"
+          :class="{ active: $route.path === '/collection' }"
+          to="/collection"
         >
-          Dashboard
+          Collection
         </router-link>
-        <span v-else class="nav-link">About Us</span>
       </li>
 
 

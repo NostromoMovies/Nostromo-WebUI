@@ -8,13 +8,13 @@ import LoginButton from './components/HomeVue/LoginButton.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/dashboard',
-    name: 'Dashboard',
+    path: '/collection',
+    name: 'Collection',
     component: BoxSection
   },
   {
-    path: '/home',
-    name: 'Home',
+    path: '/dashboard',
+    name: 'Dashboard',
     component: HomeGridSection
   },
   {
@@ -22,13 +22,6 @@ const routes: Array<RouteRecordRaw> = [
     name: 'register',
     component: SignupPop
   },
-  {
-    path: '/',
-    name: 'start-menu',
-     
-  }
-
-  
 ]
 
 const router = createRouter({
