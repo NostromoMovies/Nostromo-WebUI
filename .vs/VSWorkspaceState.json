@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\api",
+    "\\src\\assets",
+    "\\src\\components",
+    "\\src\\components\\collection",
+    "\\src\\components\\HomeVue",
+    "\\src\\router",
+    "\\src\\services",
+    "\\src\\stores"
+  ],
+  "SelectedNode": "\\src\\components\\HomeVue\\UnrecognizedFiles.vue",
+  "PreviewInSolutionExplorer": false
+}

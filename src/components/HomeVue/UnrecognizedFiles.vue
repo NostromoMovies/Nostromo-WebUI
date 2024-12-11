@@ -1,44 +1,65 @@
 ﻿<template>
     <div class="unrecognized-files">
         <h3>Unrecognized Files</h3>
-        <div class="file-list">
-            <button v-for="file in files"
-                    :key="file.id"
-                    class="file-item"
-                    @click="handleAction(file.id)">
-                <span>{{ file.timestamp }}</span>
-                <span>{{ file.name }}</span>
-            </button>
+        <div class="files-container" v-if="files.length > 0">
+            <div v-for="file in files"
+                 :key="file.videoID"
+                 class="file-item"
+                 @click="navigateToFile(file.videoID)">
+                <span>{{ formatTimestamp(file.timestamp) }}</span>
+                <span>{{ file.fileName }}</span>
+            </div>
         </div>
+        <div v-else class="no-files">No unrecognized files found</div>
     </div>
 </template>
 
 <script setup lang="ts">
-    import { ref } from 'vue';
+    import { ref, onMounted } from 'vue';
+    import axios from 'axios';
+    import { useNavigationStore } from '@/stores/unrecognizedStore';
 
-    const files = ref([
-        { id: 1, timestamp: '2024-10-18 | 18:19', name: 'File1.mkv' },
-        { id: 2, timestamp: '2024-10-18 | 18:18', name: 'File2.mkv' },
-        { id: 3, timestamp: '2024-10-18 | 18:17', name: 'File3.mkv' },
-    ]);
+    const navigationStore = useNavigationStore();
 
-    const handleAction = (fileId: number) => {
-        console.log(`Action clicked for file ID: ${fileId}`);
+    const files = ref([]);
+
+    const fetchUnrecognizedFiles = async () => {
+        try {
+            const response = await axios.get('/api/mediadisplay/unrecognized-videos');
+            files.value = response.data.results;
+        } catch (error) {
+            console.error('Error fetching unrecognized files:', error);
+        }
     };
+
+    const formatTimestamp = (timestamp: string) => {
+        const date = new Date(timestamp);
+        return `${date.toLocaleDateString()} | ${date.toLocaleTimeString()}`;
+    };
+
+    const navigateToFile = (videoID: number) => {
+        navigationStore.navigateToUnrecognizedFile(videoID);
+    };
+
+    onMounted(() => {
+        fetchUnrecognizedFiles();
+    });
 </script>
 
 <style scoped>
     .unrecognized-files {
-        background-color: var(--color-background-soft);
-        color: #fff;
+        flex-grow: 1;
         padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        max-height: 400px;
         overflow-y: auto;
     }
 
-    .file-list {
+        .unrecognized-files h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            color: var(--color-text);
+        }
+
+    .files-container {
         display: flex;
         flex-direction: column;
         gap: 10px;
@@ -46,24 +67,28 @@
 
     .file-item {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        background: #2e2e2e;
-        padding: 10px;
-        border: none;
+        gap: 10px;
+        padding: 12px;
+        background-color: rgb(24, 24, 24);
         border-radius: 4px;
-        color: inherit;
-        font: inherit;
-        text-align: left;
-        cursor: pointer;
         transition: background-color 0.3s ease;
+        cursor: pointer;
     }
 
-        .file-item span {
-            margin-right: 10px;
+        .file-item:hover {
+            background-color: #3a3a3a;
         }
 
-        .file-item:hover {
-            background: #3a3a3a;
+        .file-item span {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
         }
+
+    .no-files {
+        text-align: center;
+        padding: 20px;
+        color: #666;
+    }
 </style>
